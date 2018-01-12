@@ -7,13 +7,13 @@ import Hello from './containers/hello';
 
 
 ReactDOM.render(
-    <AppContainer>
-        <Hello />
-    </AppContainer>,
-    document.getElementById('root')
+	<AppContainer>
+		<Hello />
+	</AppContainer>,
+  document.getElementById('root'),
 );
 
 // 模块热替换的 API
 if (module.hot) {
-    module.hot.accept();
+  module.hot.accept();
 }
