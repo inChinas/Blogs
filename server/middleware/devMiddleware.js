@@ -9,7 +9,7 @@ module.exports = (compiler, opts) => {
             },
             setHeader: (name, value) => {
                 ctx.set(name, value);
-            }
+            },
         }, next);
     };
 };
