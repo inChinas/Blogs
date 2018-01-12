@@ -8,7 +8,7 @@ module.exports = {
     entry: [
         'react-hot-loader/patch', // 开启 React 代码的模块热替换(HMR)
         'webpack-hot-middleware/client', // 当发生热更新时控制台会有提示
-        path.join(__dirname, '../src/index.js') // 入口文件
+        path.join(__dirname, '../src/index.js'), // 入口文件
     ],
 
     output: {
@@ -20,7 +20,7 @@ module.exports = {
 
     resolve: {
         modules: [path.join(__dirname, '../node_modules')], // 优化webpack文件搜索范围
-        extensions: ['.web.js', '.jsx', '.js', '.json']
+        extensions: ['.web.js', '.jsx', '.js', '.json'],
     },
 
     devtool: 'cheap-module-eval-source-map', // 开启生成source-map文件功能便于代码调试
@@ -28,8 +28,8 @@ module.exports = {
     module: {
         rules: [{
                 test: /\.js$/,
-                use: ['babel-loader?cacheDirectory','eslint-loader'], // 开启编译缓存
-                exclude: /node_modules/
+                use: ['babel-loader?cacheDirectory', 'eslint-loader'], // 开启编译缓存
+                exclude: /node_modules/,
             },
             {
                 test: /\.css$/,
@@ -42,17 +42,17 @@ module.exports = {
                         options: {
                             plugins: [autoprefixer, pxtorem({
                                 rootValue: 75,
-                                propWhiteList: []
-                            })]
-                        }
-                    }
-                ]
+                                propWhiteList: [],
+                            })],
+                        },
+                    },
+                ],
             },
             {
                 test: /\.css$/,
                 use: ['style-loader', 'css-loader'],
                 include: /node_modules/,
-                exclude: path.join(__dirname, '../node_modules/antd-mobile')
+                exclude: path.join(__dirname, '../node_modules/antd-mobile'),
             },
             {
                 test: /\.css$/,
@@ -64,12 +64,12 @@ module.exports = {
                         options: {
                             plugins: [autoprefixer, pxtorem({
                                 rootValue: 75,
-                                propWhiteList: []
-                            })]
-                        }
+                                propWhiteList: [],
+                            })],
+                        },
                     },
                 ],
-                include: path.join(__dirname, '../node_modules/antd-mobile')
+                include: path.join(__dirname, '../node_modules/antd-mobile'),
             },
             {
                 test: /\.less$/,
@@ -82,11 +82,11 @@ module.exports = {
                         options: {
                             plugins: [autoprefixer, pxtorem({
                                 rootValue: 75,
-                                propWhiteList: []
-                            })]
-                        }
+                                propWhiteList: [],
+                            })],
+                        },
                     },
-                    'less-loader'
+                    'less-loader',
                 ],
             },
             {
@@ -100,11 +100,11 @@ module.exports = {
                         options: {
                             plugins: [autoprefixer, pxtorem({
                                 rootValue: 75,
-                                propWhiteList: []
-                            })]
-                        }
+                                propWhiteList: [],
+                            })],
+                        },
                     },
-                    'sass-loader'
+                    'sass-loader',
                 ],
             },
             {
@@ -122,41 +122,41 @@ module.exports = {
                             },
                             pngquant: {
                                 quality: '65-90',
-                                speed: 4
+                                speed: 4,
                             },
                             mozjpeg: {
                                 progressive: true,
-                                quality: 65
+                                quality: 65,
                             },
                             webp: {
-                                quality: 75
-                            }
-                        }
-                    }
-                ]
+                                quality: 75,
+                            },
+                        },
+                    },
+                ],
             },
             {
                 test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-                use: 'file-loader?name=font/[name]-[hash:5].[ext]'
+                use: 'file-loader?name=font/[name]-[hash:5].[ext]',
             },
             {
                 test: /\.(ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-                use: 'file-loader?name=font/[name]-[hash:5].[ext]'
-            }
+                use: 'file-loader?name=font/[name]-[hash:5].[ext]',
+            },
         ],
     },
     plugins: [
-        new webpack.NoEmitOnErrorsPlugin(), //报错时不退出webpack进程
-        new webpack.HotModuleReplacementPlugin(), //代码热替换
+        new webpack.NoEmitOnErrorsPlugin(), // 报错时不退出webpack进程
+        new webpack.HotModuleReplacementPlugin(), // 代码热替换
         new webpack.DefinePlugin({
-            'process.env.NODE_ENV': '"development"' //用于区分开发和生产环境
+            'process.env.NODE_ENV': '"development"', // 用于区分开发和生产环境
         }),
         new webpack.DllReferencePlugin({
             context: __dirname,
-            manifest: require('../dist/vendor-manifest.json')
+            manifest: require('../dist/vendor-manifest.json'),
         }),
         new OpenBrowserPlugin({
-            url: 'http://localhost:3000'
-        })
+            url: 'http://localhost:3000',
+        }),
     ],
 };

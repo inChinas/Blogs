@@ -5,19 +5,19 @@ module.exports = {
     entry: {
         vendor: [
             'react',
-            'react-dom'
-        ]
+            'react-dom',
+        ],
     },
     output: {
         filename: '[name].dll.js',
         path: path.join(__dirname, '../dist'),
-        library: '[name]_lib'
+        library: '[name]_lib',
     },
     plugins: [
         new webpack.DllPlugin({
             path: path.join(__dirname, '../dist', '[name]-manifest.json'),
             name: '[name]_lib',
-            context: __dirname
-        })
-    ]
+            context: __dirname,
+        }),
+    ],
 };
