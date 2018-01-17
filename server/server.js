@@ -36,6 +36,7 @@ app.use(serve(path.join(__dirname, '../dist')));
 
 // 渲染页面
 router.get('*', async (ctx, next) => {
+    /* eslint-disable compat/compat */
     const htmlFile = await new Promise((resolve, reject) => {
         fs.readFile(path.join(__dirname, '../src/assets/index.html'), (err, data) => {
             if (err) {

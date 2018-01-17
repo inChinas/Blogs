@@ -32,40 +32,16 @@ module.exports = {
 
     module: {
         rules: [{
-                test: /\.js$/,
-                use: ['babel-loader', 'eslint-loader'], // 编译js文件的loader,
-                exclude: /node_modules/,
-            },
-            {
-                test: /\.css$/,
-                exclude: /node_modules/,
-                use: ExtractTextPlugin.extract({
-                    use: [
-                        'css-loader?minimize=true&modules&localIdentName=[local]-[hash:base64:5]',
-                        {
-                            loader: 'postcss-loader',
-                            options: {
-                                plugins: [autoprefixer, pxtorem({
-                                    rootValue: 75,
-                                    propWhiteList: [],
-                                })],
-                            },
-                        },
-                    ],
-                    fallback: 'style-loader',
-                }),
-            },
-            {
-                test: /\.css$/,
-                use: ['style-loader', 'css-loader'],
-                include: /node_modules/,
-                exclude: path.join(__dirname, '../node_modules/antd-mobile'),
-            },
-            {
-                test: /\.css$/,
+            test: /\.js$/,
+            use: ['babel-loader', 'eslint-loader'], // 编译js文件的loader,
+            exclude: /node_modules/,
+        },
+        {
+            test: /\.css$/,
+            exclude: /node_modules/,
+            use: ExtractTextPlugin.extract({
                 use: [
-                    'style-loader',
-                    'css-loader',
+                    'css-loader?minimize=true&modules&localIdentName=[local]-[hash:base64:5]',
                     {
                         loader: 'postcss-loader',
                         options: {
@@ -76,84 +52,108 @@ module.exports = {
                         },
                     },
                 ],
-                include: path.join(__dirname, '../node_modules/antd-mobile'),
-            },
-            {
-                test: /\.less$/,
-                exclude: /node_modules/,
-                use: ExtractTextPlugin.extract({
-                    use: [
-                        'css-loader?minimize=true&modules&localIdentName=[local]-[hash:base64:5]',
-                        {
-                            loader: 'postcss-loader',
-                            options: {
-                                plugins: [autoprefixer, pxtorem({
-                                    rootValue: 75,
-                                    propWhiteList: [],
-                                })],
-                            },
-                        },
-                        'less-loader',
-                    ],
-                    fallback: 'style-loader',
-                }),
-            },
-            {
-                test: /\.scss$/,
-                exclude: /node_modules/,
-                use: ExtractTextPlugin.extract({
-                    use: [
-                        'css-loader?minimize=true&modules&localIdentName=[local]-[hash:base64:5]',
-                        {
-                            loader: 'postcss-loader',
-                            options: {
-                                plugins: [autoprefixer, pxtorem({
-                                    rootValue: 75,
-                                    propWhiteList: [],
-                                })],
-                            },
-                        },
-                        'sass-loader',
-                    ],
-                    fallback: 'style-loader',
-                }),
-            },
-            {
-                test: /\.(jpg|jpeg|png|gif|svg|webm|otf|webp)$/,
-                loaders: [
-                    'url-loader?limit=1024000&name=images/[name]-[hash:5].[ext]',
+                fallback: 'style-loader',
+            }),
+        },
+        {
+            test: /\.css$/,
+            use: ['style-loader', 'css-loader'],
+            include: /node_modules/,
+            exclude: path.join(__dirname, '../node_modules/antd-mobile'),
+        },
+        {
+            test: /\.css$/,
+            use: [
+                'style-loader',
+                'css-loader',
+                {
+                    loader: 'postcss-loader',
+                    options: {
+                        plugins: [autoprefixer, pxtorem({
+                            rootValue: 75,
+                            propWhiteList: [],
+                        })],
+                    },
+                },
+            ],
+            include: path.join(__dirname, '../node_modules/antd-mobile'),
+        },
+        {
+            test: /\.less$/,
+            exclude: /node_modules/,
+            use: ExtractTextPlugin.extract({
+                use: [
+                    'css-loader?minimize=true&modules&localIdentName=[local]-[hash:base64:5]',
                     {
-                        loader: 'image-webpack-loader',
+                        loader: 'postcss-loader',
                         options: {
-                            gifsicle: {
-                                interlaced: false,
-                            },
-                            optipng: {
-                                optimizationLevel: 7,
-                            },
-                            pngquant: {
-                                quality: '65-90',
-                                speed: 4,
-                            },
-                            mozjpeg: {
-                                progressive: true,
-                                quality: 65,
-                            },
-                            webp: {
-                                quality: 75,
-                            },
+                            plugins: [autoprefixer, pxtorem({
+                                rootValue: 75,
+                                propWhiteList: [],
+                            })],
                         },
                     },
+                    'less-loader',
                 ],
-            },
-            {
-                test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-                use: 'file-loader?name=font/[name]-[hash:5].[ext]',
-            },
-            {
-                test: /\.(ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-                use: 'file-loader?name=font/[name]-[hash:5].[ext]',
-            },
+                fallback: 'style-loader',
+            }),
+        },
+        {
+            test: /\.scss$/,
+            exclude: /node_modules/,
+            use: ExtractTextPlugin.extract({
+                use: [
+                    'css-loader?minimize=true&modules&localIdentName=[local]-[hash:base64:5]',
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            plugins: [autoprefixer, pxtorem({
+                                rootValue: 75,
+                                propWhiteList: [],
+                            })],
+                        },
+                    },
+                    'sass-loader',
+                ],
+                fallback: 'style-loader',
+            }),
+        },
+        {
+            test: /\.(jpg|jpeg|png|gif|svg|webm|otf|webp)$/,
+            loaders: [
+                'url-loader?limit=1024000&name=images/[name]-[hash:5].[ext]',
+                {
+                    loader: 'image-webpack-loader',
+                    options: {
+                        gifsicle: {
+                            interlaced: false,
+                        },
+                        optipng: {
+                            optimizationLevel: 7,
+                        },
+                        pngquant: {
+                            quality: '65-90',
+                            speed: 4,
+                        },
+                        mozjpeg: {
+                            progressive: true,
+                            quality: 65,
+                        },
+                        webp: {
+                            quality: 75,
+                        },
+                    },
+                },
+            ],
+        },
+        {
+            test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+            use: 'file-loader?name=font/[name]-[hash:5].[ext]',
+        },
+        {
+            test: /\.(ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+            use: 'file-loader?name=font/[name]-[hash:5].[ext]',
+        },
         ],
     },
     plugins: [
